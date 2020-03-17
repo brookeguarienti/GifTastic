@@ -34,8 +34,8 @@ $(document).ready(function () {
                 // set the src attribute of the img to a property from the results item
                 showImage.attr("src", results[i].images.original_still.url);
                 // append paragraph and image tag to the showDiv div
-                showDiv.append(pRating);
                 showDiv.append(showImage);
+                showDiv.append(pRating);
                 // prepend showDiv to the html page within the show-view div
                 $("#show-view").prepend(showDiv);
 
