@@ -32,7 +32,7 @@ $(document).ready(function () {
                 // create and store an image tag
                 var showImage = $("<img>");
                 // set the src attribute of the img to a property from the results item
-                showImage.attr("src", results[i].images.fixed_height_small_still.url);
+                showImage.attr("src", results[i].images.original_still.url);
                 // append paragraph and image tag to the showDiv div
                 showDiv.append(pRating);
                 showDiv.append(showImage);
@@ -40,10 +40,30 @@ $(document).ready(function () {
                 $("#show-view").prepend(showDiv);
 
 
+                showImage.attr("data-still", results[i].images.original_still.url);
+
+                showImage.attr("data-animate", results[i].images.original.url);
+
+                showImage.attr("data-state", "still")
+
+                showImage.addClass("gif")
             }
+            $(".gif").on("click", function () {
+                var state = $(this).attr("data-state");
+        
+                for(var i = 0; i < results.length; i++){
+        
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+            }
+            });
         });
-
-
+        
     }
 
     function renderButtons() {
@@ -77,6 +97,7 @@ $(document).ready(function () {
     $(document).on("click", ".show-btn", displayShows);
 
     renderButtons();
+
 
 
 });
