@@ -1,0 +1,11 @@
+body {
+    background-image: url("../Images/dust_scratches.png");
+}
+
+.show-btn {
+    margin: 5px;
+    border: solid 1px gray;
+    background-color: cadetblue;
+    color: white;
+    font-family: Optima, sans-serif;
+}

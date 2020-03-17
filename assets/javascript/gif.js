@@ -18,6 +18,7 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
 
+            clear();
             // results variable holds response from ajax request
             var results = response.data;
             // console.log variable results
@@ -48,26 +49,30 @@ $(document).ready(function () {
 
                 showImage.addClass("gif")
             }
+
+            
             $(".gif").on("click", function () {
                 var state = $(this).attr("data-state");
-        
-                for(var i = 0; i < results.length; i++){
-        
-                if (state === "still") {
-                    $(this).attr("src", $(this).attr("data-animate"));
-                    $(this).attr("data-state", "animate");
-                } else {
-                    $(this).attr("src", $(this).attr("data-still"));
-                    $(this).attr("data-state", "still");
+
+                for (var i = 0; i < results.length; i++) {
+
+                    if (state === "still") {
+                        $(this).attr("src", $(this).attr("data-animate"));
+                        $(this).attr("data-state", "animate");
+                    } else {
+                        $(this).attr("src", $(this).attr("data-still"));
+                        $(this).attr("data-state", "still");
+                    }
                 }
-            }
             });
         });
-        
+
+    }
+    function clear() {
+        $("#show-view").empty();
     }
 
     function renderButtons() {
-
         $("#buttons-view").empty();
 
         for (var i = 0; i < topics.length; i++) {
@@ -97,7 +102,4 @@ $(document).ready(function () {
     $(document).on("click", ".show-btn", displayShows);
 
     renderButtons();
-
-
-
-});
+}); 
