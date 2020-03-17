@@ -6,30 +6,42 @@ $(document).ready(function () {
     // displayMovieInfo function renders the HTML to display the appropriate content
     function displayShows() {
 
-        // var queryURL = $.get("http://api.giphy.com/v1/gifs/search?q=animals&api_key=R1uAUqzCjidqM7cUG8cMQjrSHm7lqy9a&limit=5&rating=g");
-        // queryURL.done(function (data) { console.log("success got data", data); });
-
-
+        // grab and store the data-name property value from the button
         var shows = $(this).attr("data-name");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?&q=" + shows + "&api_key=R1uAUqzCjidqM7cUG8cMQjrSHm7lqy9a&limit=10&rating=g";
-        
 
+        // constructing the queryURL using the shows variable
+        var queryURL = "http://api.giphy.com/v1/gifs/search?&q=" + shows + "&api_key=R1uAUqzCjidqM7cUG8cMQjrSHm7lqy9a&limit=10&rating=pg";
 
-        // create an ajax call for the specific show button being clicked
+        // create an ajax call with the queryURL
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
 
-            //creating a div to hold the show
-            var showDiv = $("<div class='show'>");
+            // results variable holds response from ajax request
+            var results = response.data;
+            // console.log variable results
+            console.log(results);
 
-            //storing the rating data
-            var rating = response.rating;
-            console.log(queryURL);
-            
-            console.log(response.rating);
-        })
+            // looping through each item in the results array
+            for (var i = 0; i < results.length; i++) {
+                // create and store a div tag
+                var showDiv = $("<div>");
+                // create a paragraph tag and store result item's rating within it 
+                var pRating = $("<p>").text("Rating: " + results[i].rating);
+                // create and store an image tag
+                var showImage = $("<img>");
+                // set the src attribute of the img to a property from the results item
+                showImage.attr("src", results[i].images.fixed_height_small_still.url);
+                // append paragraph and image tag to the showDiv div
+                showDiv.append(pRating);
+                showDiv.append(showImage);
+                // prepend showDiv to the html page within the show-view div
+                $("#show-view").prepend(showDiv);
+
+
+            }
+        });
 
 
     }
