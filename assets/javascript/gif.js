@@ -10,7 +10,7 @@ $(document).ready(function () {
         var shows = $(this).attr("data-name");
 
         // constructing the queryURL using the shows variable
-        var queryURL = "http://api.giphy.com/v1/gifs/search?&q=" + shows + "&api_key=R1uAUqzCjidqM7cUG8cMQjrSHm7lqy9a&limit=10&rating=pg";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?&q=" + shows + "&api_key=R1uAUqzCjidqM7cUG8cMQjrSHm7lqy9a&limit=10&rating=pg";
 
         // create an ajax call with the queryURL and GET method
         $.ajax({
