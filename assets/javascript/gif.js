@@ -27,7 +27,7 @@ $(document).ready(function () {
             // looping through each item in the results array
             for (var i = 0; i < results.length; i++) {
                 // create and store a div tag
-                var showDiv = $("<div>");
+                var showDiv = $("<div class='shows'>");
                 // create a paragraph tag and store result item's rating within it 
                 var pRating = $("<p>").text("Rating: " + results[i].rating);
                 // create and store an image tag
